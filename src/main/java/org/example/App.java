@@ -15,15 +15,19 @@ public class App extends ListenerAdapter implements EventListener {
     public static void main(String args[]) throws LoginException {
         token = args[0];
         login(token);
-        logger.log(Level.INFO, "a");
     }
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        logger.log(Level.INFO, "Mentioned: " + event.getMessage().isMentioned(event.getJDA().getSelfUser()));
+        //logger.log(Level.INFO, "Mentioned: " + event.getMessage().isMentioned(event.getJDA().getSelfUser()));
+        if(event.getMessage().getAuthor().isBot())  {
+            logger.log(Level.INFO, "Message from bot.");
+            return;
+        }
         if(event.getMessage().isMentioned(event.getJDA().getSelfUser()));   {
+            logger.log(Level.INFO, "Is not bot?" + String.valueOf(event.getAuthor().isBot() == false));
             logger.log(Level.INFO, "I have been mentioned!!");
-            logger.log(Level.INFO, event.getMessage().toString().split(" ")[1].toString());
-            commands.whatDoIDo(event);
+
+            commandRunner.doThis(event);
         }
     }
 
