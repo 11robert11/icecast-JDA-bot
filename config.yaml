@@ -1,0 +1,7 @@
+respondToBots: false
+icecastServer: localhost
+icecastPort: 8000
+tokenMainArgs: false
+token: ODY5ODc5MjIwMDAyNzY2ODc5.YQEoJw.kjnGe3JZw1Ppuv7Eavz1leWR-dY
+commandIdentType: mention
+commandIdentChar: null

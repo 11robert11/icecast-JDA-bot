@@ -3,19 +3,20 @@ package org.example;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Locale;
 
 public class CommandHandler {
     private static String command;
-    private static String[] commandAdj;
+    private static String[] commandArgs;
     private static String[] rawCommand;
     private static MessageReceivedEvent messageReceivedEvent;
     public void handle(MessageReceivedEvent event)    {
         messageReceivedEvent = event;
         rawCommand = sanitize(event);
         command = rawCommand[1]; //Index 0 is self, in most cases its gona be the mention
-        System.out.println("line 18: " + command);
+        commandArgs = ArrayUtils.remove(rawCommand, 0);
     }
     private String[] sanitize(MessageReceivedEvent event)   {
         String messageRaw = event.getMessage().toString();
@@ -31,6 +32,9 @@ public class CommandHandler {
     }
     public String getCommand() {
         return command;
+    }
+    public String[] getCommandArgs() {
+        return commandArgs;
     }
 
 }
