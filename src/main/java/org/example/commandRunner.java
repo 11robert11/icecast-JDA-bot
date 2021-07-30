@@ -41,7 +41,7 @@ public class commandRunner {
     }
     private static void leave(CommandHandler commandhandle) {
         logger.log(Level.INFO, "Leaving Voice Channel");
-        App.getAppJDA().getDirectAudioController().disconnect(commandhandle.getEvent().getGuild());
+        Bot.getAppJDA().getDirectAudioController().disconnect(commandhandle.getEvent().getGuild());
     }
     private static void join(CommandHandler commandhandle) {
         logger.log(Level.INFO, "Trying to join voice channel");
