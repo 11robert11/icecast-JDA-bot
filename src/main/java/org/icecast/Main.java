@@ -1,4 +1,6 @@
-package org.example;
+package org.icecast;
+
+import org.icecast.bot.Bot;
 
 public class Main {
     public static String[] args;

@@ -1,13 +1,16 @@
-package org.example;
+package org.icecast.bot;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.exceptions.ErrorResponseException;
 import net.dv8tion.jda.api.hooks.EventListener;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.icecast.Main;
+import org.icecast.MyErrorHandler;
+import org.icecast.command.commandRunner;
 import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.tokens.Token;
 
 import javax.security.auth.login.LoginException;
 import java.io.InputStream;
@@ -18,7 +21,6 @@ public class Bot extends ListenerAdapter implements EventListener {
     private static final Logger logger = Logger.getLogger(Bot.class.getName());
     private static JDA jda;
     private static Yaml yaml;
-    private static Object LoginException;
 
     public Bot()    {
         logger.log(Level.INFO, Token());
@@ -62,16 +64,21 @@ public class Bot extends ListenerAdapter implements EventListener {
             jda.addEventListener();
             jda.getPresence().setActivity(Activity.of(Activity.ActivityType.DEFAULT, "https://github.com/11robert11/icecast-JDA-bot"));
         } catch (Exception e) {
-            e.printStackTrace();
-            return;
+            if(e.getClass() == ErrorResponseException.class)
+            {
+                logger.log(Level.SEVERE, "Couldn't Resolve api endpoint domain.");
+            }
+            if(e.getClass() == LoginException.class)    {
+                logger.log(Level.SEVERE, "Couldn't login, possibly bad/invalid login token");
+            }
+            MyErrorHandler.dealWithStackTrace(e);
         }
 
     }
-    private static test()   {
-        InputStream inputStream = new InputStream() {
-        }
-    }
+
+
     public static JDA getAppJDA()  {
         return jda;
     }
+
 }

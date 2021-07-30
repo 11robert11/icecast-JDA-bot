@@ -1,7 +1,7 @@
 respondToBots: false
-icecastServer: localhost
-icecastPort: 8000
-tokenMainArgs: false
-token:
+defaultIceCastMount: http://localhost:8000/stream
+tokenInStartArgs: false
+token:  #Your Bots Login Token
+printStackTrace: true
 commandIdentType: mention
 commandIdentChar: null

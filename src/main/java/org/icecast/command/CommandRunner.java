@@ -1,18 +1,16 @@
-package org.example;
+package org.icecast.command;
 
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.SelfUser;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
-import net.dv8tion.jda.internal.handle.GuildCreateHandler;
+import org.icecast.bot.Bot;
 
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class commandRunner {
-    private static final Logger logger = Logger.getLogger(commandRunner.class.getName());
+public class CommandRunner {
+    private static final Logger logger = Logger.getLogger(CommandRunner.class.getName());
     public static void doThis(MessageReceivedEvent event) {
         CommandHandler commandhandle = new CommandHandler();
         commandhandle.handle(event);

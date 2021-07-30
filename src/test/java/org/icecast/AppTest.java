@@ -1,4 +1,4 @@
-package org.example;
+package org.icecast;
 
 import static org.junit.Assert.assertTrue;
 
